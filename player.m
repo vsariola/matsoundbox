@@ -188,14 +188,14 @@ function mMixBuf = player(song)
     
     function r=indexCell(a,n)
         r = [];
-        if ~isempty(a) && n > 0 && length(a) >= n
+        if ~isempty(a) && ~isempty(n) && n > 0 && length(a) >= n
             r=a{n};
         end
     end
 
     function r=indexArray(a,n)
         r = [];
-        if ~isempty(a) && n > 0 && length(a) >= n
+        if ~isempty(a) && ~isempty(n) && n > 0 && length(a) >= n
             r=a(n);
         end
     end
