@@ -46,7 +46,7 @@ function first = exportChannel(f,i,exportEmptyChannels,first)
         return;
     end
     if ~first
-        fprint(f,',');
+        fprintf(f,',');
     end
     first = false;
     fprintf(f,'{');
