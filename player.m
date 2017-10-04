@@ -88,7 +88,7 @@ function mMixBuf = player(song)
                 panAmt = instr{1}(25) / 512;
                 panFreq = 6.283184 * 2^(instr{1}(26) - 9) / rowLen;
                 dlyAmt = instr{1}(27) / 255;
-                dly = instr{1}(28) * rowLen;
+                dly = bitor(instr{1}(28) * rowLen,1)-1; % Must be an even number
 
                 % Calculate start sample number for this row in the pattern
                 rowStartSample = (p * uint32(patternLen) + uint32(row)) * uint32(rowLen);
@@ -170,7 +170,7 @@ function mMixBuf = player(song)
                 
                 start = rowStartSample * 2;
                 if (start < dly)
-                    start = dly + mod(dly,2);
+                    start = dly;
                 end
                 
                 % Perform delay. This could have been done in the previous
