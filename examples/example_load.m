@@ -3,7 +3,6 @@ addpath('..');
 song = loadSoundBoxBin('sway_by_m');
 % The player crashes if some notes are still playing when we hit the end,
 % so add some extra time in the end
-song.endPattern = song.endPattern+1;
 tic;
 wave = player(song);
 toc;
