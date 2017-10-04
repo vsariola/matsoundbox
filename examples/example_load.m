@@ -1,10 +1,6 @@
 addpath('..');
 
-f = fopen('sway_by_m');
-data = fread(f,'uint8=>uint8');
-fclose(f);
-
-song = loadSoundBoxBin(data);
+song = loadSoundBoxBin('sway_by_m');
 % The player crashes if some notes are still playing when we hit the end,
 % so add some extra time in the end
 song.endPattern = song.endPattern+1;
