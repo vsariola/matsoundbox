@@ -2,7 +2,7 @@ function compareSongToWave(song,wavefile)
     wavegen = player(song);
     wavegen = max(min(wavegen,32767),-32767);     
     wavegen = reshape(wavegen/32768,2,length(wavegen)/2)';        
-    [waveload,~] = audioread(wavefile);
+    waveload = wavread(wavefile);
     
     lenGen = size(wavegen,1);
     lenLoad = size(waveload,1);
