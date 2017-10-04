@@ -26,6 +26,9 @@
 function mMixBuf = player(song)
 
     x = (0:44099)/44100;
+    % Precalculate oscillators into a table; this is much faster than
+    % using lambdas in matlab
+    % Oscillators: 1 = sine, 2 = square, 3 = sawtooth, 4 = triangle
     oscPrecalc = [sin(x*2*pi);(x < .5)*2-1;2 * x - 1;1-abs(x*4-2)];
     getnotefreq = @(n) .003959503758 * 2^((n - 128) / 12);    
 
@@ -104,9 +107,6 @@ function mMixBuf = player(song)
                         range = rowStartSample*2+1:2:(rowStartSample+uint32(length(noteBuf)))*2-1;
                         chnBuf(range) = chnBuf(range)+noteBuf;
                         lastSample = max(lastSample,endSample);
-                        %for j = 1:length(noteBuf)
-                        %    chnBuf(rowStartSample*2+j*2-1) = chnBuf(...)+noteBuf(j);
-                        %end
                     end
                 end
                                                 
