@@ -177,8 +177,8 @@ function mMixBuf = player(song)
                     start = dly + mod(dly,2);
                 end
                 for k = start:2:(rowStartSample + rowLen-1) * 2
-                    chnBuf(k+1)=floor(chnBuf(k+1)+chnBuf(k-dly+2) * dlyAmt);
-                    chnBuf(k+2)=floor(chnBuf(k+2)+chnBuf(k-dly+1) * dlyAmt);
+                    chnBuf(k+1)=chnBuf(k+1)+chnBuf(k-dly+2) * dlyAmt;
+                    chnBuf(k+2)=chnBuf(k+2)+chnBuf(k-dly+1) * dlyAmt;
                 end
             end
         end    
@@ -263,7 +263,7 @@ function mMixBuf = player(song)
             end
 
             % Add to (mono) channel buffer
-            noteBuf(jj+1) = floor(80 * sample * e);       
+            noteBuf(jj+1) = 80 * sample * e;       
             
             j2 = j2+1;
         end          
