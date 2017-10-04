@@ -33,7 +33,7 @@ function mMixBuf = player(song)
     mOscillators = {osc_sin,osc_square,osc_saw,osc_tri};    
 
     % Init iteration state variables
-    mLastRow = song.endPattern - 2;
+    mLastRow = song.endPattern;
 
     % Prepare song info
     mNumWords = song.rowLen * song.patternLen * (mLastRow + 1) * 2;
@@ -60,8 +60,7 @@ function mMixBuf = player(song)
         % Patterns
         for p = 0:mLastRow
             cp = indexArray(instr{2},p+1);            
-           
-            
+                       
             % Pattern rows
             for row = 0:(patternLen-1)
                 % Execute effect command.                                
@@ -176,6 +175,9 @@ function mMixBuf = player(song)
                 if (start < dly)
                     start = dly + mod(dly,2);
                 end
+                
+                % Perform delay. This could have been done in the previous
+                % loop, but it was slower than doing a second loop
                 for k = start:2:(rowStartSample + rowLen-1) * 2
                     chnBuf(k+1)=chnBuf(k+1)+chnBuf(k-dly+2) * dlyAmt;
                     chnBuf(k+2)=chnBuf(k+2)+chnBuf(k-dly+1) * dlyAmt;
