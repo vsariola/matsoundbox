@@ -15,14 +15,14 @@ function compareSongToWave(song,wavefile)
     title(sprintf('Loaded from %s',wavefile),'Interpreter','none');       
     subplot(3,1,3);    
     if lenGen ~= lenLoad
-        fprintf('Test failed: the number of samples is incorrect compared to %s',wavefile);
+        fprintf('Test failed: the number of samples is incorrect compared to %s\n',wavefile);
     end
     l = min(lenGen,lenLoad);
     diff = wavegen(1:l,:) - waveload(1:l,:);    
     plot(diff);        
     title('Difference');
-    if any(abs(diff) > 1e-3)
-        fprintf('Test failed: difference is too big for file %s',wavefile);
+    if any(abs(diff) > 3e-3)
+        fprintf('Test failed: difference is too big for file %s\n',wavefile);
     end
     drawnow
 end
